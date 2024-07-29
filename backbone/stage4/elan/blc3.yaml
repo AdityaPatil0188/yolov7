@@ -1,0 +1,51 @@
+problem:
+
+  shape:
+
+    name: conv45
+  
+    coefficients:
+    - default: 1
+      name: Wstride
+    - default: 1
+      name: Hstride
+    - default: 1
+      name: Wdilation
+    - default: 1
+      name: Hdilation
+  
+    data-spaces:
+    - name: Weights
+      projection:
+      - [ [C] ]
+      - [ [M] ]
+      - [ [R] ]
+      - [ [S] ]
+    - name: Inputs
+      projection:
+      - [ [N] ]
+      - [ [C] ]
+      - [ [R, Wdilation], [P, Wstride] ]
+      - [ [S, Hdilation], [Q, Hstride] ]
+    - name: Outputs
+      projection:
+      - [ [N] ]
+      - [ [M] ]
+      - [ [P] ]
+      - [ [Q] ]
+      read-write: true
+  
+    dimensions: [ N, C, M, R, S, P, Q ]
+  
+  instance:
+    N: 1
+    C: 256
+    M: 256
+    R: 3
+    S: 3
+    P: 20
+    Q: 20
+    Wdilation: 1
+    Wstride: 1
+    Hdilation: 1
+    Hstride: 1
